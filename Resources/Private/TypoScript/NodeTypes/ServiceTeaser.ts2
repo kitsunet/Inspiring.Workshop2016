@@ -1,0 +1,4 @@
+prototype(Inspiring.Workshop2016:ServiceTeaser) {
+    linkTarget = ${String.startsWith(q(node).property('buttonLink'), 'node://') ? '' : '_blank'}
+    buttonLink.@process.convertUris = TYPO3.Neos:ConvertUris
+}

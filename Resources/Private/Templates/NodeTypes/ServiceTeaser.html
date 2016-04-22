@@ -1,0 +1,15 @@
+{namespace neos=TYPO3\Neos\ViewHelpers}
+<div>
+    <i class="fa {icon}"></i>
+    {neos:contentElement.editable(property: 'title', tag: 'h4')}
+    {neos:contentElement.editable(property: 'text')}
+
+    <f:if condition="{buttonLink}">
+        <p><br/>
+            <a href="{f:if(condition: node.context.inBackend, else: buttonLink)}" class="btn btn-theme" target="{linkTarget}">
+                {neos:contentElement.editable(property: 'buttonLabel', tag: 'span')}
+            </a>
+        </p>
+    </f:if>
+</div>
+

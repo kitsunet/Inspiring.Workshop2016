@@ -1,0 +1,20 @@
+prototype(Inspiring.Workshop2016:MainMenu) < prototype(TYPO3.Neos:Menu) {
+    templatePath = 'resource://Inspiring.Workshop2016/Private/Templates/TypoScriptObjects/MainMenu.html'
+    entryLevel = 1
+    maximumLevels = 2
+
+    site = ${site}
+
+    active.attributes = TYPO3.TypoScript:Attributes {
+       class = 'active'
+       class.@process.dropdown = ${item.subItems ? value + ' dropdown' : value}
+    }
+    current.attributes = TYPO3.TypoScript:Attributes {
+       class = 'active'
+       class.@process.dropdown = ${item.subItems ? value + ' dropdown' : value}
+
+    }
+    normal.attributes = TYPO3.TypoScript:Attributes {
+       class = ${item.subItems ? 'dropdown' : null}
+    }
+}

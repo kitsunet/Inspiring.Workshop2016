@@ -1,0 +1,15 @@
+prototype(TYPO3.Neos.NodeTypes:MultiColumn) {
+    attributes.class = 'row centered'
+    columns {
+        iterationName = 'iteration'
+    }
+}
+
+prototype(TYPO3.Neos.NodeTypes:MultiColumnItem) {
+    attributes.class = ${
+        'col-' +
+        q(node).parent().property('layoutDevice') +
+        '-' +
+        String.split(q(node).parent().property('layout'), '-')[iteration.index]
+        }
+}

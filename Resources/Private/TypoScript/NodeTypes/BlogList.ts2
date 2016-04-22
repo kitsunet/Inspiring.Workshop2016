@@ -1,0 +1,3 @@
+prototype(Inspiring.Workshop2016:BlogList) {
+    posts = ${q(site).find('[instanceof Inspiring.Workshop2016:BlogPost]')}
+}

@@ -1,0 +1,14 @@
+<div>
+    <h1>MY BLOG LIST</h1>
+
+    <f:for each="{posts}" as="post">
+        <div>
+            <typo3.neos:link.node node="{post}">
+                {post.label}
+                <f:if condition="{post.properties.image}">
+                    <typo3.media:image asset="{post.properties.image}" alt="{post.label}"/>
+                </f:if>
+            </typo3.neos:link.node>
+        </div>
+    </f:for>
+</div>

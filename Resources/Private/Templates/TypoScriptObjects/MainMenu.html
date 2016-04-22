@@ -1,0 +1,37 @@
+{namespace neos=TYPO3\Neos\ViewHelpers}
+{namespace ts=TYPO3\TypoScript\ViewHelpers}
+
+<div class="container" xmlns:f="http://www.w3.org/1999/XSL/Transform">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<neos:link.node node="{site}" class="navbar-brand">INSPIRING.</neos:link.node>
+	</div>
+	<div class="navbar-collapse collapse navbar-right">
+		<ul class="nav navbar-nav">
+			<f:render section="itemsList" arguments="{items: items}"/>
+		</ul>
+	</div><!--/.nav-collapse -->
+</div>
+
+<f:section name="itemsList">
+	<f:for each="{items}" as="item">
+		<li{ts:render(path: '{item.state}.attributes', context: {item: item}) -> f:format.raw()}>
+		<neos:link.node node="{item.node}" class="{f:if(condition: item.subItems, then: 'dropdown-toggle')}" additionalAttributes="{data-toggle: '{f:if(condition: item.subItems, then: \'dropdown\')}'}">
+			{item.label}
+			<f:if condition="{item.subItems}">
+				<b class="caret"></b>
+			</f:if>
+		</neos:link.node>
+		<f:if condition="{item.subItems}">
+			<ul class="dropdown-menu">
+				<f:render section="itemsList" arguments="{items: item.subItems}" />
+			</ul>
+		</f:if>
+		</li>
+	</f:for>
+</f:section>

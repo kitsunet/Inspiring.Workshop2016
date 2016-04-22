@@ -1,0 +1,135 @@
+# If you need more than just the "main" content area you can uncomment the snippet below. It will add a "sidebar" area
+# to your pages. You can add as many areas as you like, still only those that are rendered in your TypoScript and
+# Template are visible on your page.
+---
+#'TYPO3.Neos.NodeTypes:Page':
+#  childNodes:
+#    'sidebar':
+#      type: 'TYPO3.Neos:ContentCollection'
+
+
+'TYPO3.Neos.NodeTypes:ThreeColumn':
+  properties:
+    layout:
+      defaultValue: '4-4-4'
+      ui:
+        inspector:
+          editorOptions:
+            values:
+              '33-33-33': ~
+              '25-50-25': ~
+              '50-25-25': ~
+              '25-25-50': ~
+              '4-4-4':
+                label: '33% / 33% / 33%'
+              '3-6-3':
+                label: '25% / 50% / 25%'
+
+    layoutDevice:
+      type: string
+      defaultValue: 'md'
+      ui:
+        label: i18n
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'column'
+          editor: 'TYPO3.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              'md':
+                label: 'Tablet'
+              'sm':
+                label: 'Mobile'
+              'lg':
+                label: 'Desktop'
+
+'Inspiring.Workshop2016:ServiceTeaser':
+  superTypes:
+    'TYPO3.Neos:Content': true
+    'TYPO3.Neos.NodeTypes:TitleMixin': true
+    'TYPO3.Neos.NodeTypes:TextMixin': true
+  ui:
+    label: 'Service Teaser'
+    icon: 'icon-text'
+    inspector:
+      groups:
+        options:
+          label: 'Optionen'
+  properties:
+    title:
+      defaultValue: 'Headline'
+      ui:
+        aloha:
+          'format':
+            'h1': FALSE
+            'h2': FALSE
+            'h3': FALSE
+    icon:
+      type: string
+      defaultValue: 'fa-heart-o'
+      ui:
+        label: 'Icon'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'options'
+          editor: 'TYPO3.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              'fa-heart-o':
+                label: 'Herz'
+              'fa-flask':
+                label: 'Erlenmeyerkolben'
+              'fa-trophy':
+                label: 'Pokal'
+    buttonLabel:
+      type: string
+      defaultValue: 'More Info'
+      ui:
+        inlineEditable: true
+    buttonLink:
+      type: string
+      ui:
+        label: 'Button Link'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'options'
+          editor: 'TYPO3.Neos/Inspector/Editors/LinkEditor'
+
+
+'Inspiring.Workshop2016:Homepage':
+  superTypes:
+    'TYPO3.Neos.NodeTypes:Page': true
+  ui:
+    label: 'Homepage'
+  childNodes:
+    footer:
+      type: 'TYPO3.Neos:ContentCollection'
+      constraints:
+        nodeTypes:
+          '*': false
+          'TYPO3.Neos.NodeTypes:ThreeColumn': true
+
+'TYPO3.Neos.NodeTypes:Page':
+  constraints:
+    nodeTypes:
+      'Inspiring.Workshop2016:Homepage': false
+
+'Inspiring.Workshop2016:BlogPost':
+  superTypes:
+    'TYPO3.Neos.NodeTypes:Page': true
+  ui:
+    label: 'Blog Post'
+  properties:
+    image:
+      type: TYPO3\Media\Domain\Model\ImageInterface
+      ui:
+        label: 'Post Image'
+        inspector:
+          group: 'document'
+
+
+'Inspiring.Workshop2016:BlogList':
+  superTypes:
+    'TYPO3.Neos:Content': true
+  ui:
+    label: 'Blog List'
